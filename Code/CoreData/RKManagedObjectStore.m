@@ -132,6 +132,8 @@ static RKManagedObjectStore *defaultObjectStore = nil;
         _managedObjectModel = [[NSManagedObjectModel modelByMergingModels:allManagedObjectModels] retain];
         _delegate = delegate;
 
+	_delegate = delegate;
+
         if (nilOrNameOfSeedDatabaseInMainBundle) {
             [self createStoreIfNecessaryUsingSeedDatabase:nilOrNameOfSeedDatabaseInMainBundle];
         }
