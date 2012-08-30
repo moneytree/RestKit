@@ -390,7 +390,17 @@ static RKManagedObjectStore *defaultObjectStore = nil;
     }
 
     // Background threads leverage thread-local storage
-    NSManagedObjectContext *managedObjectContext = [self threadLocalObjectForKey:RKManagedObjectStoreThreadDictionaryContextKey];
+    NSManagedObjectContext* managedObjectContext = [self threadLocalObjectForKey:RKManagedObjectStoreThreadDictionaryContextKey];
+    
+    // Moneytree changed this temporarily to address this issues below
+    // https://github.com/RestKit/RestKit/issues/848
+    if (managedObjectContext.persistentStoreCoordinator != self.persistentStoreCoordinator) {
+        // The old local storage still exists,
+        // might have cleaned all of them, since its a stale MOC anyway.
+        managedObjectContext = nil;
+        [self clearThreadLocalStorage];
+    }
+  
     if (!managedObjectContext) {
         managedObjectContext = [self newManagedObjectContext];
 
