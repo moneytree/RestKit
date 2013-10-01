@@ -11,14 +11,18 @@ RakeUp::ServerTask.new do |t|
 end
 
 namespace :test do
+  task :prepare do    
+    system(%Q{mkdir -p "RestKit.xcworkspace/xcshareddata/xcschemes" && cp Tests/Schemes/*.xcscheme "RestKit.xcworkspace/xcshareddata/xcschemes/"})
+  end
+  
   desc "Run the unit tests for iOS"
-  task :ios do
-    $ios_success = system("xctool -workspace RestKit.xcworkspace -scheme RestKitTests test -test-sdk iphonesimulator")
+  task :ios => :prepare do
+    $ios_success = system("xctool -workspace RestKit.xcworkspace -scheme RestKitTests -sdk iphonesimulator build build-tests run-tests -test-sdk iphonesimulator")
   end
   
   desc "Run the unit tests for OS X"
-  task :osx do
-    $osx_success = system("xctool -workspace RestKit.xcworkspace -scheme RestKitFrameworkTests test -test-sdk macosx -sdk macosx")
+  task :osx => :prepare do
+    $osx_success = system("xctool -workspace RestKit.xcworkspace -scheme RestKitFrameworkTests -sdk macosx build build-tests run-tests -test-sdk macosx")
   end
 end
 
@@ -40,7 +44,7 @@ def restkit_version
 end
 
 def apple_doc_command
-  "/usr/local/bin/appledoc -t ~/Library/Application\\ Support/appledoc -o Docs/API -p RestKit -v #{restkit_version} -c \"RestKit\" " +
+  "/usr/local/bin/appledoc -o Docs/API -p RestKit -v #{restkit_version} -c \"RestKit\" " +
   "--company-id org.restkit --warn-undocumented-object --warn-undocumented-member  --warn-empty-description  --warn-unknown-directive " +
   "--warn-invalid-crossref --warn-missing-arg --no-repeat-first-par "
 end
@@ -68,7 +72,7 @@ task :docs => 'docs:generate'
 namespace :appledoc do
   task :check do
     unless File.exists?('/usr/local/bin/appledoc')
-      "appledoc not found at /usr/local/bin/appledoc: Install via homebrew and try again: `brew install --HEAD appledoc`"
+      puts "appledoc not found at /usr/local/bin/appledoc: Install via homebrew and try again: `brew install --HEAD appledoc`"
       exit 1
     end
   end
