@@ -318,6 +318,16 @@ static NSString *RKStringDescribingURLResponseWithData(NSURLResponse *response, 
     }
 }
 
+/**
+ * RPR needs this for the quick fix on the 
+ * cancelled `RKResponseMapperOperation` not calling
+ * `willFinish` method which will properly pop this operation from
+ * the queue.
+ */
+@interface RKResponseMapperOperation ()
+- (void)willFinish;
+@end
+
 @interface RKObjectRequestOperation ()
 @property (nonatomic, strong) RKOperationStateMachine *stateMachine;
 @property (nonatomic, strong, readwrite) RKHTTPRequestOperation *HTTPRequestOperation;
@@ -403,6 +413,15 @@ static NSString *RKStringDescribingURLResponseWithData(NSURLResponse *response, 
         }];
         [self.stateMachine setCancellationBlock:^{
             [weakSelf.HTTPRequestOperation cancel];
+          
+            // When the `responseMapperOperation` is still in the queue (not even yet executed) and it gets cancelled.
+            // It would not call the proper callback before popped out from the queue. This is a quick fix while
+            // issues has been submitted to RestKit github page.
+            // https://github.com/RestKit/RestKit/issues/1636
+            if ([weakSelf.responseMapperOperation isReady] && [weakSelf.responseMapperOperation isExecuting] == NO)
+            {
+              [weakSelf.responseMapperOperation willFinish];
+            }
             [weakSelf.responseMapperOperation cancel];
         }];
     }
