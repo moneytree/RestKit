@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2492874A19483742003715D0 /* AFOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 2492874819483742003715D0 /* AFOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2492874B19483742003715D0 /* AFOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 2492874919483742003715D0 /* AFOAuth2Client.m */; };
 		2502C8ED15F79CF70060FD75 /* CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2502C8E715F79CF70060FD75 /* CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2502C8EE15F79CF70060FD75 /* CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2502C8E715F79CF70060FD75 /* CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2502C8EF15F79CF70060FD75 /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 2502C8E815F79CF70060FD75 /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -639,6 +641,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2492874819483742003715D0 /* AFOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOAuth2Client.h; sourceTree = "<group>"; };
+		2492874919483742003715D0 /* AFOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFOAuth2Client.m; sourceTree = "<group>"; };
 		2501405215366000004E0466 /* RKObjectiveCppTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RKObjectiveCppTest.mm; sourceTree = "<group>"; };
 		2502C8E715F79CF70060FD75 /* CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreData.h; sourceTree = "<group>"; };
 		2502C8E815F79CF70060FD75 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
@@ -1046,6 +1050,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2492874719483742003715D0 /* AFOAuth2Client */ = {
+			isa = PBXGroup;
+			children = (
+				2492874819483742003715D0 /* AFOAuth2Client.h */,
+				2492874919483742003715D0 /* AFOAuth2Client.m */,
+			);
+			name = AFOAuth2Client;
+			path = AFOAuth2Client/AFOAuth2Client;
+			sourceTree = "<group>";
+		};
 		25104F0E15C30C7900829135 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1273,6 +1287,7 @@
 		25160E8D145652E40060A5C5 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2492874719483742003715D0 /* AFOAuth2Client */,
 				252CCE6D17E0CA2700B7F0BF /* ISO8601DateFormatterValueTransformer */,
 				252CCE5D17E08E2D00B7F0BF /* RKValueTransformers */,
 				25C6C0A21716F6F800C98A73 /* TransitionKit */,
@@ -1875,6 +1890,7 @@
 				25A8C2341673BD480014D9A6 /* RKConnectionTestExpectation.h in Headers */,
 				25A199D416ED035A00792629 /* RKBenchmark.h in Headers */,
 				25C6C0BD1716F6F800C98A73 /* TKEvent.h in Headers */,
+				2492874A19483742003715D0 /* AFOAuth2Client.h in Headers */,
 				25C6C0C11716F6F800C98A73 /* TKState.h in Headers */,
 				25C6C0C51716F6F800C98A73 /* TKStateMachine.h in Headers */,
 				25C6C0CB1716F6F800C98A73 /* TransitionKit.h in Headers */,
@@ -2331,6 +2347,7 @@
 				253477F315FFBC61002C0E4E /* RKDictionaryUtilities.m in Sources */,
 				2534781615FFD4A6002C0E4E /* RKURLEncodedSerialization.m in Sources */,
 				259B96D71604CCCC0000C250 /* AFHTTPClient.m in Sources */,
+				2492874B19483742003715D0 /* AFOAuth2Client.m in Sources */,
 				259B96DB1604CCCC0000C250 /* AFHTTPRequestOperation.m in Sources */,
 				259B96DF1604CCCC0000C250 /* AFImageRequestOperation.m in Sources */,
 				259B96E31604CCCC0000C250 /* AFJSONRequestOperation.m in Sources */,

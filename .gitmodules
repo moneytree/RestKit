@@ -10,3 +10,6 @@
 [submodule "Vendor/ISO8601DateFormatterValueTransformer"]
 	path = Vendor/ISO8601DateFormatterValueTransformer
 	url = https://github.com/blakewatters/ISO8601DateFormatterValueTransformer.git
+[submodule "Vendor/AFOAuth2Client"]
+	path = Vendor/AFOAuth2Client
+	url = git@github.com:moneytree/AFOAuth2Client.git
