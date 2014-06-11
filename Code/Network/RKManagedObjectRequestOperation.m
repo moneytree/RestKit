@@ -19,6 +19,7 @@
 //
 
 #ifdef _COREDATADEFINES_H
+#if __has_include("RKManagedObjectCaching.h")
 
 #import "RKManagedObjectRequestOperation.h"
 #import "RKLog.h"
@@ -547,7 +548,7 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
         // Check for a change in the Etag
         NSString *cachedEtag = [[(NSHTTPURLResponse *)[self.cachedResponse response] allHeaderFields] objectForKey:@"ETag"];
         NSString *responseEtag = [[response allHeaderFields] objectForKey:@"ETag"];
-        if (! [cachedEtag isEqualToString:responseEtag]) return NO;
+        if (!(cachedEtag && responseEtag && [cachedEtag isEqualToString:responseEtag])) return NO;
         
         // Response data has changed
         NSData *responseData = self.HTTPRequestOperation.responseData;
@@ -616,21 +617,23 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
                 return completionBlock(nil, error);
             }
         }
+
+        if (!responseMappingError) {
+            success = [weakSelf deleteLocalObjectsMissingFromMappingResult:mappingResult error:&error];
+            if (! success || [weakSelf isCancelled]) {
+                return completionBlock(nil, error);
+            }
         
-        success = [weakSelf deleteLocalObjectsMissingFromMappingResult:mappingResult error:&error];
-        if (! success || [weakSelf isCancelled]) {
-            return completionBlock(nil, error);
-        }
-        
-        // Persist our mapped objects
-        success = [weakSelf obtainPermanentObjectIDsForInsertedObjects:&error];
-        if (! success || [weakSelf isCancelled]) {
-            return completionBlock(nil, error);
-        }
-        
-        success = [weakSelf saveContext:&error];
-        if (! success || [weakSelf isCancelled]) {
-            return completionBlock(nil, error);
+            // Persist our mapped objects
+            success = [weakSelf obtainPermanentObjectIDsForInsertedObjects:&error];
+            if (! success || [weakSelf isCancelled]) {
+                return completionBlock(nil, error);
+            }
+            
+            success = [weakSelf saveContext:&error];
+            if (! success || [weakSelf isCancelled]) {
+                return completionBlock(nil, error);
+            }
         }
         
         // Refetch all managed objects nested at key paths within the results dictionary before returning
@@ -904,4 +907,5 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
 
 @end
 
+#endif
 #endif
