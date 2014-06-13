@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2453B4D1194AD8090062E5C3 /* AFOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 2492874919483742003715D0 /* AFOAuth2Client.m */; };
+		2453B4D2194AD8250062E5C3 /* AFOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 2492874819483742003715D0 /* AFOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2492874B19483742003715D0 /* AFOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 2492874919483742003715D0 /* AFOAuth2Client.m */; };
 		24D39F1C19483FCA00BF5447 /* AFOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 2492874819483742003715D0 /* AFOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2502C8ED15F79CF70060FD75 /* CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2502C8E715F79CF70060FD75 /* CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -604,10 +606,10 @@
 		BE05BDD2178214AA00F7C9C9 /* RKRouteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05BDCF1782109F00F7C9C9 /* RKRouteTest.m */; };
 		C0F11CE3190883380054AEA0 /* RKPathMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE1190883380054AEA0 /* RKPathMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0F11CE4190883380054AEA0 /* RKPathMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F11CE2190883380054AEA0 /* RKPathMatcher.m */; };
-		C0F11CE5190883460054AEA0 /* RKPathMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE1190883380054AEA0 /* RKPathMatcher.h */; };
+		C0F11CE5190883460054AEA0 /* RKPathMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE1190883380054AEA0 /* RKPathMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0F11CE6190883460054AEA0 /* RKPathMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F11CE2190883380054AEA0 /* RKPathMatcher.m */; };
 		C0F11CE81908C7E60054AEA0 /* RKCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE71908C7E60054AEA0 /* RKCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0F11CE91908C7E60054AEA0 /* RKCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE71908C7E60054AEA0 /* RKCoreData.h */; };
+		C0F11CE91908C7E60054AEA0 /* RKCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F11CE71908C7E60054AEA0 /* RKCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2F2B89961FC462B981CEB7A /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E457EFC3D502479D8B4FCF2A /* libPods-ios.a */; };
 /* End PBXBuildFile section */
 
@@ -1938,7 +1940,6 @@
 				25FABED314E3796C00E609E7 /* RKTestNotificationObserver.h in Headers */,
 				25055B8514EEF32A00B9C4DD /* RKMappingTest.h in Headers */,
 				25055B8914EEF32A00B9C4DD /* RKTestFactory.h in Headers */,
-				C0F11CE91908C7E60054AEA0 /* RKCoreData.h in Headers */,
 				25055B9014EEF40000B9C4DD /* RKPropertyMappingTestExpectation.h in Headers */,
 				25EC1A3A14F72B0A00C3CF3F /* RKFetchRequestManagedObjectCache.h in Headers */,
 				25EC1A3E14F72B2900C3CF3F /* RKInMemoryManagedObjectCache.h in Headers */,
@@ -1996,7 +1997,6 @@
 				2507C328161BD5C700EA71FF /* RKTestHelpers.h in Headers */,
 				25E88C89165C5CC30042ABD0 /* RKConnectionDescription.h in Headers */,
 				252CCE6717E08E2D00B7F0BF /* RKValueTransformers.h in Headers */,
-				C0F11CE5190883460054AEA0 /* RKPathMatcher.h in Headers */,
 				255893E3166BA6A20010C70B /* RKObjectParameterization.h in Headers */,
 				255893E4166BA7400010C70B /* RestKit-Prefix.pch in Headers */,
 				255893E5166BA7700010C70B /* RKTestFixture.h in Headers */,
@@ -2004,8 +2004,11 @@
 				25A199D516ED035A00792629 /* RKBenchmark.h in Headers */,
 				25C6C0BE1716F6F800C98A73 /* TKEvent.h in Headers */,
 				25C6C0C21716F6F800C98A73 /* TKState.h in Headers */,
+				C0F11CE91908C7E60054AEA0 /* RKCoreData.h in Headers */,
+				C0F11CE5190883460054AEA0 /* RKPathMatcher.h in Headers */,
 				25C6C0C61716F6F800C98A73 /* TKStateMachine.h in Headers */,
 				25C6C0CC1716F6F800C98A73 /* TransitionKit.h in Headers */,
+				2453B4D2194AD8250062E5C3 /* AFOAuth2Client.h in Headers */,
 				25C6C0E91716F79B00C98A73 /* RKOperationStateMachine.h in Headers */,
 				25DA35701836741D001A56A0 /* TKTransition.h in Headers */,
 				54CDB45C17B408B100FAC285 /* RKStringTokenizer.h in Headers */,
@@ -2509,6 +2512,7 @@
 				2534781715FFD4A6002C0E4E /* RKURLEncodedSerialization.m in Sources */,
 				259B96D81604CCCC0000C250 /* AFHTTPClient.m in Sources */,
 				259B96DC1604CCCC0000C250 /* AFHTTPRequestOperation.m in Sources */,
+				2453B4D1194AD8090062E5C3 /* AFOAuth2Client.m in Sources */,
 				259B96E01604CCCC0000C250 /* AFImageRequestOperation.m in Sources */,
 				259B96E41604CCCC0000C250 /* AFJSONRequestOperation.m in Sources */,
 				259B96E61604CCCC0000C250 /* AFNetworkActivityIndicatorManager.m in Sources */,
