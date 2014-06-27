@@ -314,15 +314,16 @@ static char RKManagedObjectContextChangeMergingObserverAssociationKey;
 
     // Create an MOC for use on the main queue
     self.mainQueueManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    self.mainQueueManagedObjectContext.parentContext = self.persistentStoreManagedObjectContext;
+  self.mainQueueManagedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
+//    self.mainQueueManagedObjectContext.parentContext = self.persistentStoreManagedObjectContext;
     self.mainQueueManagedObjectContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
     // Merge changes from a primary MOC back into the main queue when complete
-    RKManagedObjectContextChangeMergingObserver *observer = [[RKManagedObjectContextChangeMergingObserver alloc] initWithObservedContext:self.persistentStoreManagedObjectContext mergeContext:self.mainQueueManagedObjectContext];
-    objc_setAssociatedObject(self.mainQueueManagedObjectContext,
-                             &RKManagedObjectContextChangeMergingObserverAssociationKey,
-                             observer,
-                             OBJC_ASSOCIATION_RETAIN);
+//    RKManagedObjectContextChangeMergingObserver *observer = [[RKManagedObjectContextChangeMergingObserver alloc] initWithObservedContext:self.persistentStoreManagedObjectContext mergeContext:self.mainQueueManagedObjectContext];
+//    objc_setAssociatedObject(self.mainQueueManagedObjectContext,
+//                             &RKManagedObjectContextChangeMergingObserverAssociationKey,
+//                             observer,
+//                             OBJC_ASSOCIATION_RETAIN);
 }
 
 - (void)recreateManagedObjectContexts
