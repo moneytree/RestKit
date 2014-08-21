@@ -225,14 +225,13 @@ static char RKManagedObjectContextChangeMergingObserverAssociationKey;
     if (! persistentStore) return nil;
     if (! [self.persistentStoreCoordinator removePersistentStore:persistentStore error:error]) return nil;
 
-    /** MT Changed this */
-    // The previous code only takes `seedOptions` before and doesnt respect the `nilOrOptions` parameter passed in.
-    // It is now respecting the `nilOrOptions` parameter and override any 'default' options.
-    NSDictionary *seedOptions = @{ RKSQLitePersistentStoreSeedDatabasePathOption: (seedPath ?: [NSNull null]) };
+    NSDictionary *seedOptions = nil;
     if (nilOrOptions) {
-      NSMutableDictionary *mutableOptions = [nilOrOptions mutableCopy];
-      [mutableOptions addEntriesFromDictionary:seedOptions];
-      seedOptions = mutableOptions;
+        NSMutableDictionary *mutableOptions = [nilOrOptions mutableCopy];
+        [mutableOptions setObject:(seedPath ?: [NSNull null]) forKey:RKSQLitePersistentStoreSeedDatabasePathOption];
+        seedOptions = mutableOptions;
+    } else {
+        seedOptions = @{ RKSQLitePersistentStoreSeedDatabasePathOption: (seedPath ?: [NSNull null]) };
     }
     persistentStore = [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nilOrConfigurationName URL:storeURL options:seedOptions error:error];
     if (! persistentStore) return nil;
