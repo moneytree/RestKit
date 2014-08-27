@@ -275,9 +275,14 @@ static char RKManagedObjectContextChangeMergingObserverAssociationKey;
 
 - (NSManagedObjectContext *)newChildManagedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType tracksChanges:(BOOL)tracksChanges
 {
+    return [self newChildManagedObjectContextWithConcurrencyType:concurrencyType parentContext:self.persistentStoreManagedObjectContext tracksChanges:tracksChanges];
+}
+
+- (NSManagedObjectContext *)newChildManagedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType parentContext:(NSManagedObjectContext *)parentContext tracksChanges:(BOOL)tracksChanges
+{
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:concurrencyType];
     [managedObjectContext performBlockAndWait:^{
-        managedObjectContext.parentContext = self.persistentStoreManagedObjectContext;
+        managedObjectContext.parentContext = parentContext;
         managedObjectContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
     }];
     

@@ -244,6 +244,7 @@
  @return A newly created managed object context with the given concurrency type whose parent is the `persistentStoreManagedObjectContext`.
  */
 - (NSManagedObjectContext *)newChildManagedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType tracksChanges:(BOOL)tracksChanges;
+- (NSManagedObjectContext *)newChildManagedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType parentContext:(NSManagedObjectContext *)parentContext tracksChanges:(BOOL)tracksChanges;
 - (NSManagedObjectContext *)newChildManagedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType DEPRECATED_ATTRIBUTE; // invokes above with `tracksChanges:NO`
 
 ///----------------------------
