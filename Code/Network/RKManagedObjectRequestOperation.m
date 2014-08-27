@@ -583,7 +583,22 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
                 }
             }
         }];
-        RKMappingResult *mappingResult = [[RKMappingResult alloc] initWithDictionary:@{ [NSNull null]: managedObjects }];
+        
+        // Get the objects from the main thread before passing it to the completion block please.
+        // All of the `managedObjects` are actually associated with a context for the background thread.
+        __block RKMappingResult *mappingResult = nil;
+        [self.managedObjectContext performBlockAndWait:^{
+            
+            NSMutableArray *managedObjectsForMainThread = [NSMutableArray arrayWithCapacity:managedObjects.count];
+            for (NSManagedObject *managedObject in managedObjects)
+            {
+                NSManagedObject *objectForMainThread = [self.managedObjectContext objectWithID:managedObject.objectID];
+                [managedObjectsForMainThread addObject:objectForMainThread];
+            }
+            
+            mappingResult = [[RKMappingResult alloc] initWithDictionary:@{ [NSNull null]: managedObjectsForMainThread }];
+        }];
+        
         completionBlock(mappingResult, nil);
         return;
     }
@@ -733,7 +748,12 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
     if (! [fetchRequests count]) return YES;
     
     // Proceed with cleanup
-    NSSet *managedObjectsInMappingResult = RKManagedObjectsFromMappingResultWithMappingInfo(mappingResult, self.mappingInfo) ?: [NSSet set];
+    
+    __block NSSet *managedObjectsInMappingResult = nil;
+    [self.privateContext performBlockAndWait:^{
+        managedObjectsInMappingResult = RKManagedObjectsFromMappingResultWithMappingInfo(mappingResult, self.mappingInfo) ?: [NSSet set];
+    }];
+    
     NSSet *localObjects = [self localObjectsFromFetchRequests:fetchRequests matchingRequestURL:error];
     if (! localObjects) {
         RKLogError(@"Failed when attempting to fetch local candidate objects for orphan cleanup: %@", error ? *error : nil);
@@ -824,7 +844,12 @@ BOOL RKDoesArrayOfResponseDescriptorsContainOnlyEntityMappings(NSArray *response
         }];
     }
     
-    if ([self.privateContext hasChanges]) {
+    __block BOOL hasChanges = NO;
+    [self.privateContext performBlockAndWait:^{
+        hasChanges = [self.privateContext hasChanges];
+    }];
+    
+    if (hasChanges) {
         return [self saveContext:self.privateContext error:error];
     } else if ([self.targetObject isKindOfClass:[NSManagedObject class]]) {
         NSManagedObjectContext *context = [(NSManagedObject *)self.targetObject managedObjectContext];
