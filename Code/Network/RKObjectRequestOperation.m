@@ -429,7 +429,7 @@ static NSString *RKStringDescribingURLResponseWithData(NSURLResponse *response, 
     if (!block) {
         [super setCompletionBlock:nil];
     } else {
-        __unsafe_unretained id weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         [super setCompletionBlock:^ {
             block();
             [weakSelf setCompletionBlock:nil];
