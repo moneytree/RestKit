@@ -539,7 +539,11 @@ static NSString *RKStringDescribingURLResponseWithData(NSURLResponse *response, 
                     // in the use of this cachedResponse.
                     NSMutableDictionary *userInfo = cachedResponse.userInfo ? [cachedResponse.userInfo mutableCopy] : [NSMutableDictionary dictionary];
                     userInfo[RKResponseHasBeenMappedCacheUserInfoKey] = @YES;
-                    NSCachedURLResponse *newCachedResponse = [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.rkData userInfo:userInfo storagePolicy:cachedResponse.storagePolicy];
+
+                    // Restkit needs to be backward compatible with iOS 5/6 and it is said that accessing `.data` in the `cachedResponse`
+                    // could cause a leak. MT thinks that `.rkData` could cause crash.
+                    // TODO: See if the crash doesnt happen anymore after this fix is released. -- RPR 15/07/02
+                    NSCachedURLResponse *newCachedResponse = [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:userInfo storagePolicy:cachedResponse.storagePolicy];
                     [[NSURLCache sharedURLCache] storeCachedResponse:newCachedResponse forRequest:weakSelf.HTTPRequestOperation.request];
                 }
             }
