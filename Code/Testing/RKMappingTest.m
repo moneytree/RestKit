@@ -27,14 +27,14 @@
 
 // Core Data
 #ifdef _COREDATADEFINES_H
-#if __has_include("RKCoreData.h")
-#define RKCoreDataIncluded
-#import <RestKit/CoreData/RKConnectionDescription.h>
-#import <RestKit/CoreData/RKEntityMapping.h>
-#import <RestKit/CoreData/RKFetchRequestManagedObjectCache.h>
-#import <RestKit/CoreData/RKManagedObjectMappingOperationDataSource.h>
-#import <RestKit/Testing/RKConnectionTestExpectation.h>
-#endif
+#   if __has_include(<RestKit/CoreData/RKCoreData.h>)
+#       define RKCoreDataIncluded
+#       import <RestKit/CoreData/RKConnectionDescription.h>
+#       import <RestKit/CoreData/RKEntityMapping.h>
+#       import <RestKit/CoreData/RKFetchRequestManagedObjectCache.h>
+#       import <RestKit/CoreData/RKManagedObjectMappingOperationDataSource.h>
+#       import <RestKit/Testing/RKConnectionTestExpectation.h>
+#   endif
 #endif
 
 // Error Constants

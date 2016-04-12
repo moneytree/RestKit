@@ -38,10 +38,10 @@
 #import <objc/runtime.h>
 
 #ifdef _COREDATADEFINES_H
-#   if __has_include("RKCoreData.h")
+#   if __has_include(<RestKit/CoreData/RKCoreData.h>)
 #       define RKCoreDataIncluded
-#       import "RKManagedObjectStore.h"
-#       import "RKManagedObjectRequestOperation.h"
+#       import <RestKit/CoreData/RKManagedObjectStore.h>
+#       import <RestKit/Network/RKManagedObjectRequestOperation.h>
 #   endif
 #endif
 

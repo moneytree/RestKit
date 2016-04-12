@@ -19,9 +19,9 @@
 //
 
 #ifdef _COREDATADEFINES_H
-#if __has_include("RKCoreData.h")
-#define RKCoreDataIncluded
-#endif
+#   if __has_include(<RestKit/CoreData/RKCoreData.h>)
+#       define RKCoreDataIncluded
+#   endif
 #endif
 
 /**

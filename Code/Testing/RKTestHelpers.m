@@ -27,10 +27,10 @@
 #import <SOCKit/SOCKit.h>
 
 #ifdef _COREDATADEFINES_H
-#if __has_include("RKCoreData.h")
-#define RKCoreDataIncluded
-#import <RestKit/Network/RKManagedObjectRequestOperation.h>
-#endif
+#   if __has_include("RKCoreData.h")
+#       define RKCoreDataIncluded
+#       import <RestKit/Network/RKManagedObjectRequestOperation.h>
+#   endif
 #endif
 
 @implementation RKTestHelpers
