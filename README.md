@@ -71,7 +71,7 @@ RestKit is broken into several modules that cleanly separate the mapping engine 
   </tr>
   <tr>
     <td><a href="http://restkit.org/api/latest/Classes/RKRelationshipMapping.html">RKRelationshipMapping</a></td>
-    <td>Specifies a desired mapping of a nested to-one or to-many child objects in in terms of a source and destination key path and an <tt>RKObjectMapping</tt> with which to map the attributes of the child object.</td>
+    <td>Specifies a desired mapping of a nested to-one or to-many child objects in terms of a source and destination key path and an <tt>RKObjectMapping</tt> with which to map the attributes of the child object.</td>
   </tr>  
   <tr>
     <td><a href="http://restkit.org/api/latest/Classes/RKDynamicMapping.html">RKDynamicMapping</a></td>
@@ -542,7 +542,7 @@ The following Cocoa frameworks must be linked into the application target for pr
 1. **CFNetwork.framework** on iOS
 1. **CoreData.framework**
 1. **Security.framework**
-1. **MobileCoreServices.framework** on iOS or **CoreServices.framework** on OS X
+1. **CoreServices.framework** on iOS or **CoreServices.framework** on OS X
 
 And the following linker flags must be set:
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             =  'RestKit'
-  s.version          =  '0.27.2'
+  s.version          =  '0.27.3'
   s.summary          =  'RestKit is a framework for consuming and modeling RESTful web resources on iOS and OS X.'
   s.homepage         =  'https://github.com/RestKit/RestKit'
   s.social_media_url =  'https://twitter.com/RestKit'
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Network' do |ns|
     ns.source_files   = 'Code/Network.h', 'Code/Network/**/*'
-    ns.ios.frameworks = 'CFNetwork', 'Security', 'MobileCoreServices', 'SystemConfiguration'
+    ns.ios.frameworks = 'CFNetwork', 'Security', 'CoreServices', 'SystemConfiguration'
     ns.osx.frameworks = 'CoreServices', 'Security', 'SystemConfiguration'
     ns.dependency       'SOCKit'
     ns.dependency       'RestKit/ObjectMapping'
